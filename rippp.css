@@ -1,0 +1,51 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body{
+    background-color: #a8e5f8;
+    justify-content: center;
+    display: flex;
+
+    height: 600px;
+    align-items: center; /*both of these brings the button to centre*/
+}
+
+.btn{
+    text-decoration: none;
+    background-color: #ecc514;
+    padding: 40px 80px; /*top-down and left-right*/
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.8); /*horizontal offset l-r, vertical offset t-b, blur radius*/
+    color: black;
+    font-size: 30px;
+    font-weight: 2000;
+    position: relative; /*the parent position, the absolute pos elemt will move relative to this*/
+    overflow: hidden; /*hide the part which comes out of the button*/
+}
+
+.btn::before{ /*pseudo class, we can insert content before the element's actual content using css, without writing ectra html*/
+    content: ""; /*must*/
+    position: absolute; /*it will move relative to btn class*/
+    background-color: rgb(252, 151, 92);   
+    width: 0;
+    height: 0;
+    top: var(--posY);
+    left: var(--posX);
+    transform: translate(-50%,-50%);/*moves element without affecting the layout*/
+    border-radius: 50%;
+    transition: width 0.5s, height 0.5s;
+}
+
+.btn:hover::before{
+    width: 500px;
+    height: 500px;
+}
+
+.btn span{
+    position: relative; /*wanting text over the hover but inside the same layout, must used with z index*/
+    z-index: 1; /*handles overlapping*/
+}
